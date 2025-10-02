@@ -1,0 +1,33 @@
+<div class="w-full bg-[#545454] flex justify-between py-1 px-20 text-white">
+  <span>Osteopatia - Fisieoterapia</span>
+  <span>Dott. Paolo Caristia</span>
+</div>
+<div
+  class="flex flex-wrap content-center justify-between w-full h-[80px] px-20 bg-[#64A69D] text-white"
+>
+  <div class="nav-logo flex flex-wrap content-center h-full">
+    <img
+      src="plant.png"
+      alt="logo"
+      class="object-fit-contain w-20 hue-rotate-90 bg-white p-3 rounded-full"
+      routerLink="/"
+    />
+  </div>
+  <div class="nav-links h-full">
+    <ul class="flex flex-wrap content-center h-full">
+      @for (navLink of headerLinks(); track $index) {
+
+      <li
+        class="flex flex-wrap content-center px-6 h-full text-center text-capitalize hover:bg-[#477771]"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <a [routerLink]="navLink.link">{{ navLink.label }}</a>
+      </li>
+      }
+    </ul>
+  </div>
+</div>
+<div class="quick-contacts">
+  <app-quick-contacts></app-quick-contacts>
+</div>

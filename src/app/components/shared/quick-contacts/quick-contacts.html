@@ -1,0 +1,21 @@
+<div
+  class="w-full flex flex-wrap justify-between items-top px-4 sm:px-10 md:px-20 py-5"
+>
+  @for (item of quickContacts(); track $index) {
+  <div
+    class="flex items-center h-full justify-center gap-4 border-r last:border-r-0 py-3 flex-1 min-w-[200px]"
+  >
+    <span class="w-10 h-10">
+      <img
+        [src]="item.icon"
+        [alt]="item.title"
+        class="object-contain w-full h-full"
+      />
+    </span>
+    <div>
+      <h6 class="font-bold capitalize">{{ item.title }}</h6>
+      <p [innerHTML]="item.description"></p>
+    </div>
+  </div>
+  }
+</div>
