@@ -1,0 +1,9 @@
+<div
+  class="w-screen flex flex-col justify-center items-center py-20"
+  [class.bg-[#969FA6]]="isTertiary()"
+>
+  <h3 class="text-3xl font-bold mb-8" [class.text-white]="isTertiary()">
+    {{ text() }}
+  </h3>
+  <app-button [type]="buttonType()" [label]="buttonLabel()"></app-button>
+</div>

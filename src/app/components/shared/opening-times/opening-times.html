@@ -1,0 +1,24 @@
+<h3 class="font-bold mb-4">Orari di Apertura</h3>
+<div class="wrapper bg-gray-300 w-60 px-8 py-4">
+  <ul class="">
+    @for (item of orariApertura(); track $index) {
+
+    <li
+      class="flex justify-between py-1.5 border-b-2 last:border-b-0 border-gray-700"
+      [ngClass]="{
+        ' opacity-100': $index === currentDayIndex,
+        ' opacity-50': $index !== currentDayIndex
+      }"
+    >
+      <span>{{ item.day }}</span>
+      @if (item.hours) {
+
+      <span>{{ item.hours }}</span>
+      }@else{
+
+      <span class="px-3 py-1 bg-gray-900 text-white">chiuso</span>
+      }
+    </li>
+    }
+  </ul>
+</div>

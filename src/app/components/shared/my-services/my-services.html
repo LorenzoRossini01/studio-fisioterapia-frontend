@@ -1,0 +1,15 @@
+<div
+  class="bg-[#64A69D] w-50 p-8 flex flex-column flex-wrap gap-4 text-white rounded-br-4xl"
+>
+  <h4 class="font-extrabold text-xl">I miei Servizi</h4>
+  <ul>
+    @for (link of servizi(); track $index) {
+
+    <li class="font-bold capitalize opacity-75 hover:opacity-100">
+      <a [routerLink]="link.link" class="flex"
+        ><span>- {{ link.label }}</span></a
+      >
+    </li>
+    }
+  </ul>
+</div>
