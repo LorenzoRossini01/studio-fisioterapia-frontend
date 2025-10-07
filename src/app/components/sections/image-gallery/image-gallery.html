@@ -1,0 +1,28 @@
+<div class="wrapper px-10">
+  <div class="grid grid-cols-3 gap-4 auto-rows-[400px] mx-auto">
+    @for (image of visibleImages; track image) {
+    <div
+      class="break-inside-avoid"
+      [ngClass]="image.span === 2 ? 'col-span-2' : 'col-span-1 '"
+    >
+      <img
+        [src]="image.src"
+        alt="Studio"
+        class="w-full h-full object-cover rounded-lg shadow-md hover:scale-[1.02] transition-transform duration-300"
+        loading="lazy"
+      />
+    </div>
+    }
+  </div>
+
+  <!-- Bottone "Mostra altre" -->
+  @if (hasMore()) {
+  <div class="flex justify-center mt-8">
+    <app-button
+      type="tertiary"
+      label="Vedi di più"
+      (onClick)="showMore()"
+    ></app-button>
+  </div>
+  }
+</div>

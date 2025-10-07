@@ -1,0 +1,19 @@
+<div class="wrapper h-screen overflow-hidden relative">
+  <img
+    class="w-full h-full object-fit-cover"
+    src="https://picsum.photos/3000/2000"
+    alt=""
+  />
+  <div
+    class="absolute inset-50 mx-auto px-10 py-6 border-1 border-white rounded flex gap-6 flex-col justify-center items-center"
+  >
+    <h1 class="text-6xl text-center font-extrabold uppercase text-white">
+      Studio Fisioterapia e Osteopatia di Paolo Caristia
+    </h1>
+    <app-button
+      label="Prenota un appuntamento"
+      type="primary"
+      (onClick)="handleClick()"
+    ></app-button>
+  </div>
+</div>

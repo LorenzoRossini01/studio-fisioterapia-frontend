@@ -6,6 +6,7 @@ import { ServiceCard } from '../../components/shared/service-card/service-card';
 import { CustomerReview } from '../../components/shared/customer-review/customer-review';
 import { PageTitle } from '../../components/shared/page-title/page-title';
 import { MoreInfo } from '../../components/shared/more-info/more-info';
+import { BlogArticlePreview } from '../../components/shared/blog-article-preview/blog-article-preview';
 
 @Component({
   selector: 'app-blog',
@@ -17,6 +18,7 @@ import { MoreInfo } from '../../components/shared/more-info/more-info';
     CustomerReview,
     PageTitle,
     MoreInfo,
+    BlogArticlePreview,
   ],
   templateUrl: './blog.html',
   styleUrl: './blog.css',

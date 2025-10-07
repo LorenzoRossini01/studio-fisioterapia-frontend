@@ -1,43 +1,50 @@
-<h2 class="font-bold text-4xl ml-10">buttons</h2>
-<div class="p-10">
-  <app-button label="bottone"></app-button>
-</div>
-<div class="p-10">
-  <app-button type="danger" label="bottone"></app-button>
-</div>
-<div class="p-10 bg-black">
-  <app-button
-    type="tertiary"
-    (onClick)="handleButtonClick()"
-    label="bottone"
-  ></app-button>
-</div>
+<div class="container mx-auto">
+  <h2 class="font-bold text-4xl ml-10">buttons</h2>
+  <div class="p-10">
+    <app-button label="bottone"></app-button>
+  </div>
+  <div class="p-10">
+    <app-button type="danger" label="bottone"></app-button>
+  </div>
+  <div class="p-10 bg-black">
+    <app-button
+      type="tertiary"
+      (onClick)="handleButtonClick()"
+      label="bottone"
+    ></app-button>
+  </div>
 
-<h2 class="font-bold text-4xl ml-10">My-services</h2>
-<div class="p-10">
-  <app-my-services></app-my-services>
-</div>
+  <h2 class="font-bold text-4xl ml-10">My-services</h2>
+  <div class="p-10">
+    <app-my-services></app-my-services>
+  </div>
 
-<h2 class="font-bold text-4xl ml-10">Opening-times</h2>
-<div class="p-10">
-  <app-opening-times></app-opening-times>
-</div>
-<h2 class="font-bold text-4xl ml-10">Service-card</h2>
-<div class="p-10 flex gap-5 w-full">
-  <app-service-card [hasShadow]="true"></app-service-card>
-  <app-service-card></app-service-card>
-  <app-service-card [hasShadow]="true"></app-service-card>
-</div>
-<h2 class="font-bold text-4xl ml-10">Customer-review</h2>
-<div class="p-10 flex gap-5 w-full">
-  <app-customer-review></app-customer-review>
-</div>
-<h2 class="font-bold text-4xl ml-10 mb-4">page-title</h2>
-<app-page-title title="Titolo Pagina"></app-page-title>
+  <h2 class="font-bold text-4xl ml-10">Opening-times</h2>
+  <div class="p-10">
+    <app-opening-times></app-opening-times>
+  </div>
+  <h2 class="font-bold text-4xl ml-10">Service-card</h2>
+  <div class="p-10 flex gap-5 w-full">
+    <app-service-card [hasShadow]="true"></app-service-card>
+    <app-service-card></app-service-card>
+    <app-service-card [hasShadow]="true"></app-service-card>
+  </div>
+  <h2 class="font-bold text-4xl ml-10">Customer-review</h2>
+  <div class="p-10 flex gap-5 w-full">
+    <app-customer-review></app-customer-review>
+  </div>
+  <h2 class="font-bold text-4xl ml-10 mb-4">page-title</h2>
+  <app-page-title title="Titolo Pagina"></app-page-title>
 
-<h2 class="font-bold text-4xl ml-10 mb-4">more info</h2>
-<app-more-info
-  text="Lorem ipsum dolor sit amet."
-  buttonType="tertiary"
-  buttonLabel="Prenota un appuntamento"
-></app-more-info>
+  <h2 class="font-bold text-4xl ml-10 mb-4">more info</h2>
+  <app-more-info
+    text="Lorem ipsum dolor sit amet."
+    buttonType="tertiary"
+    buttonLabel="Prenota un appuntamento"
+  ></app-more-info>
+
+  <h2 class="font-bold text-4xl ml-10 mb-4">Blog preview</h2>
+
+  <app-blog-article-preview></app-blog-article-preview>
+  <app-blog-article-preview></app-blog-article-preview>
+</div>

@@ -1,0 +1,22 @@
+<div class="wrapper py-8 mx-auto">
+  <h3 class="text-4xl font-bold capitalize text-center">Titolo</h3>
+
+  <swiper-container
+    init="true"
+    slides-per-view="3"
+    space-between="20"
+    loop="true"
+    autoplay-delay="4000"
+    navigation="true"
+    class="mySwiper"
+    (swiperprogress)="onProgress($any($event))"
+    (swiperslidechange)="onSlideChange()"
+  >
+    @for (review of reviews(); track $index) {
+
+    <swiper-slide>
+      <app-customer-review [review]="review"></app-customer-review>
+    </swiper-slide>
+    }
+  </swiper-container>
+</div>

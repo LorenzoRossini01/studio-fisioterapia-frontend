@@ -1,0 +1,31 @@
+<div class="w-3/5 text-[#545454] mb-6">
+  <div class="image-container w-full aspect-3/2 mb-4 relative">
+    <img
+      [src]="article().imageUrl"
+      [alt]="article().title"
+      class="w-full h-full"
+    />
+    <div
+      class="absolute bottom-4 left-4 px-6 py-4 bg-[#64a69d] uppercase text-white font-bold text-xl"
+    >
+      <p>{{ article().date | date : "longDate" }}</p>
+    </div>
+  </div>
+  <div class="px-4 pb-4">
+    <div class="flex justify-between items-end mb-4">
+      <h4 class="font-extrabold capitalize text-2xl">{{ article().title }}</h4>
+      <span class="uppercase font-bold">Osteopatia</span>
+    </div>
+    @if (article().subtitle) {
+    <p class="font-semibold capitalize">{{ article().subtitle }}</p>
+    } @if (article().description) {
+    <p class="mb-4">{{ article().description }}</p>
+    } @if (article().link) {
+    <p>
+      <a [routerLink]="article().link" class="font-bold underline"
+        >Leggi di più -></a
+      >
+    </p>
+    }
+  </div>
+</div>
