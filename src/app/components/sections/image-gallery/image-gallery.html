@@ -1,14 +1,20 @@
-<div class="wrapper px-10">
-  <div class="grid grid-cols-3 gap-4 auto-rows-[400px] mx-auto">
-    @for (image of visibleImages; track image) {
+<div class="wrapper px-4 sm:px-6 lg:px-10">
+  <!-- Griglia immagini -->
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[200px] max-w-6xl mx-auto"
+  >
+    @for (image of visibleImages; track image; let i = $index) {
     <div
       class="break-inside-avoid"
-      [ngClass]="image.span === 2 ? 'col-span-2' : 'col-span-1 '"
+      [ngClass]="
+        image.span === 2 ? 'sm:col-span-2 lg:col-span-2' : 'col-span-1'
+      "
+      (click)="openImage(i)"
     >
       <img
         [src]="image.src"
         alt="Studio"
-        class="w-full h-full object-cover rounded-lg shadow-md hover:scale-[1.02] transition-transform duration-300"
+        class="cursor-pointer w-full h-full object-cover rounded-lg shadow-md hover:scale-[1.02] transition-transform duration-300"
         loading="lazy"
       />
     </div>
@@ -23,6 +29,48 @@
       label="Vedi di più"
       (onClick)="showMore()"
     ></app-button>
+  </div>
+  }
+
+  <!-- Lightbox -->
+  @if (selectedImage) {
+  <div
+    class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50"
+    (click)="closeImage()"
+  >
+    <div
+      class="relative max-w-4xl w-full px-4"
+      (click)="$event.stopPropagation()"
+    >
+      <img
+        [src]="selectedImage!.src"
+        [alt]="`Foto studio ${selectedImage.src}`"
+        class="w-full h-auto rounded-xl shadow-2xl object-contain"
+      />
+
+      <!-- Pulsante chiudi -->
+      <button
+        (click)="closeImage()"
+        class="absolute top-[-2rem] right-[-2rem] text-white text-3xl font-bold hover:scale-110 transition"
+      >
+        ×
+      </button>
+
+      <!-- Frecce -->
+      <button
+        (click)="prevImage()"
+        class="absolute left-2 top-1/2 -translate-y-1/2 text-white text-4xl font-bold hover:scale-125 transition sm:left-[-2rem]"
+      >
+        ‹
+      </button>
+
+      <button
+        (click)="nextImage()"
+        class="absolute right-2 top-1/2 -translate-y-1/2 text-white text-4xl font-bold hover:scale-125 transition sm:right-[-2rem]"
+      >
+        ›
+      </button>
+    </div>
   </div>
   }
 </div>

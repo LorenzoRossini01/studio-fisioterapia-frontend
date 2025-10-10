@@ -1,9 +1,29 @@
 <div
-  class="w-screen flex flex-col justify-center items-center py-20"
+  class="w-full flex flex-col justify-center text-center items-center py-20"
   [class.bg-[#969FA6]]="isTertiary()"
 >
   <h3 class="text-3xl font-bold mb-8" [class.text-white]="isTertiary()">
     {{ text() }}
   </h3>
-  <app-button [type]="buttonType()" [label]="buttonLabel()"></app-button>
+  <app-button
+    [type]="buttonType()"
+    [label]="buttonLabel()"
+    (onClick)="handleClick()"
+  ></app-button>
 </div>
+
+<!-- <div
+  class="w-full flex flex-col justify-center items-center text-center py-20 transition-colors duration-300"
+  [class.bg-[#969FA6].text-white]="isTertiary()"
+  [class.bg-transparent.text-black]="isTertiary()"
+>
+  <h3 class="text-3xl sm:text-4xl font-bold mb-8">
+    {{ text() }}
+  </h3>
+
+  <app-button
+    [type]="buttonType()"
+    [label]="buttonLabel()"
+    (onClick)="handleClick()"
+  ></app-button>
+</div> -->

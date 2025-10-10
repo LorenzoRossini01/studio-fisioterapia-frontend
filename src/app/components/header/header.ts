@@ -15,6 +15,7 @@ export type NavLinkType = {
   styleUrl: './header.css',
 })
 export class Header {
+  menuOpen = signal(false);
   headerLinks = signal<NavLinkType[]>([
     { label: 'home', link: '' },
     { label: 'chi sono', link: '/chi-sono' },
@@ -22,4 +23,8 @@ export class Header {
     { label: 'blog', link: '/blog' },
     { label: 'contatti', link: '/contatti' },
   ]);
+
+  toggleMenu() {
+    this.menuOpen.update((menu) => !menu);
+  }
 }

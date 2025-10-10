@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { Button, ButtonType } from '../button/button';
 
 @Component({
@@ -9,6 +9,10 @@ import { Button, ButtonType } from '../button/button';
 })
 export class MoreInfo {
   text = input.required();
+  onClick = output();
+  handleClick() {
+    this.onClick.emit();
+  }
   buttonType = input<ButtonType>('primary');
   buttonLabel = input.required();
 

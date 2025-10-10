@@ -1,18 +1,30 @@
-<div class="wrapper bg-blue-200">
-  <div class="container py-8 mx-auto">
-    <h3 class="text-4xl font-bold capitalize">Chi sono</h3>
-    <div class="grid grid-cols-2 gap-6 mt-6">
-      <div class="img-container">
-        <img src="https://picsum.photos/3000/2000" alt="" />
+<div class="wrapper bg-blue-200 py-10">
+  <div class="max-w-6xl mx-auto px-4">
+    <h3 class="text-3xl sm:text-4xl font-bold capitalize mb-6">
+      {{ aboutHomeData().title }}
+    </h3>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+      <!-- Immagine -->
+      <div class="img-container order-1 md:order-none">
+        <img
+          [src]="`http://localhost:1337${aboutHomeData().image?.url}`"
+          alt="Foto del fisioterapista"
+          class="w-full h-full object-cover rounded-xl shadow-lg aspect-video"
+        />
       </div>
-      <div>
-        <p class="mb-6 text-2xl">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sequi, quos!
-          Sint voluptas eligendi placeat, ratione illo minus vel. Cupiditate
-          autem explicabo suscipit ab non ut ex nihil dignissimos similique
-          nemo.
-        </p>
-        <app-button label="Scopri di più"></app-button>
+
+      <!-- Testo -->
+      <div class="text-container">
+        <div
+          [innerHTML]="aboutText()"
+          class="text-lg sm:text-xl mb-6 leading-relaxed text-gray-800"
+        ></div>
+
+        <app-button
+          label="Scopri di più"
+          (onClick)="handleClick()"
+        ></app-button>
       </div>
     </div>
   </div>

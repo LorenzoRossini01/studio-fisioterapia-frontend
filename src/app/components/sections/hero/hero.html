@@ -1,19 +1,40 @@
-<div class="wrapper h-screen overflow-hidden relative">
+@if (heroData()) {
+
+<div class="relative h-[100vh] overflow-hidden">
+  <!-- Background image -->
   <img
-    class="w-full h-full object-fit-cover"
-    src="https://picsum.photos/3000/2000"
-    alt=""
+    class="absolute inset-0 w-full h-full object-cover"
+    [src]="`http://localhost:1337${heroData().background?.url}`"
+    alt="Studio Fisioterapia e Osteopatia"
   />
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- Content -->
   <div
-    class="absolute inset-50 mx-auto px-10 py-6 border-1 border-white rounded flex gap-6 flex-col justify-center items-center"
+    class="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 h-full"
   >
-    <h1 class="text-6xl text-center font-extrabold uppercase text-white">
-      Studio Fisioterapia e Osteopatia di Paolo Caristia
+    <h1
+      class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase text-white max-w-4xl leading-tight"
+    >
+      {{ heroData().title }}
     </h1>
-    <app-button
-      label="Prenota un appuntamento"
-      type="primary"
-      (onClick)="handleClick()"
-    ></app-button>
+    @if (heroData().subtitle) {
+    <p>
+      {{ heroData().subtitle }}
+    </p>
+    } @if (heroData().cta) {
+
+    <div class="mt-8">
+      <app-button
+        [label]="heroData().cta!.label"
+        [type]="heroData().cta!.type || 'primary'"
+        (onClick)="handleClick()"
+      ></app-button>
+    </div>
+    }
   </div>
 </div>
+
+}

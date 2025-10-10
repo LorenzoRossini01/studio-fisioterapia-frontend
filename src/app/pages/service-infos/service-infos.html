@@ -1,1 +1,79 @@
-<p>service-infos works!</p>
+<app-page-title title="fisioterapia tipo 1"></app-page-title>
+<div class="wrapper px-4 sm:px-6 lg:px-10 py-6">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Contenuto principale -->
+    <div class="lg:col-span-2">
+      <div>
+        <h3 class="text-3xl sm:text-4xl font-bold capitalize my-6">
+          Fisioterapia di tipo 1: di che cosa si tratta?
+        </h3>
+        <p class="text-lg sm:text-xl font-semibold capitalize mb-6">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit...
+        </p>
+      </div>
+
+      <article>
+        <img
+          src="https://picsum.photos/920/1080"
+          alt="Fisioterapia tipo 1"
+          class="w-full lg:w-1/2 float-none lg:float-right lg:ml-6 mb-6 rounded-lg object-cover"
+        />
+        <p class="mb-6">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          reiciendis qui...
+        </p>
+        <p class="mb-6">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          reiciendis qui...
+        </p>
+        <p class="mb-6">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          reiciendis qui...
+        </p>
+        <p class="mb-6">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus
+          reiciendis qui...
+        </p>
+
+        <h4 class="text-2xl sm:text-3xl font-bold capitalize my-6">
+          Altre informazioni:
+        </h4>
+        <ul class="list-disc ml-6 mb-6">
+          <li>info 1</li>
+          <li>info 2</li>
+          <li>info 3</li>
+          <li>info 4</li>
+        </ul>
+
+        <h4 class="text-2xl sm:text-3xl font-bold capitalize my-6">
+          Trattamenti
+        </h4>
+        <p class="mb-6">
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit...
+        </p>
+
+        <app-more-info
+          text="Per ulteriori informazioni o prenotare una visita, non esitare a contattarmi!"
+          buttonLabel="prenota un appuntamento"
+        ></app-more-info>
+      </article>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="lg:col-span-1 flex flex-col gap-12">
+      <app-my-services>
+        <h4 class="font-extrabold text-2xl mb-4">I miei Servizi</h4>
+        <ul class="text-lg sm:text-xl">
+          @for (link of servizi(); track $index) {
+          <li class="font-bold capitalize opacity-75 hover:opacity-100 mb-2">
+            <a [routerLink]="link.link" class="flex">
+              <span>- {{ link.label }}</span>
+            </a>
+          </li>
+          }
+        </ul>
+      </app-my-services>
+      <app-opening-times></app-opening-times>
+    </div>
+  </div>
+</div>

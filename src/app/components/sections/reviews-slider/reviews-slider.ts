@@ -1,19 +1,16 @@
 import {
-  AfterViewInit,
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
-  Inject,
-  PLATFORM_ID,
+  input,
   signal,
   viewChild,
-  ViewChild,
 } from '@angular/core';
-import { Swiper, SwiperOptions } from 'swiper/types';
+import { Swiper } from 'swiper/types';
 import { register } from 'swiper/element/bundle';
 
 import { CustomerReview } from '../../shared/customer-review/customer-review';
-import { isPlatformBrowser } from '@angular/common';
+import { ReviewInterface } from '../../../pages/homepage/home.interface';
 
 register();
 
@@ -25,16 +22,21 @@ register();
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class ReviewsSlider {
-  // @ViewChild('mySwiperEl', { static: true }) swiperEl!: ElementRef;
   swiperEl = viewChild<ElementRef>('mySwiperEl');
-  reviews = signal([1, 2, 3, 4, 5]);
+  reviews = input.required<ReviewInterface[]>();
 
+  brakepoints = JSON.stringify({
+    0: { slidesPerView: 1, navigation: false },
+    640: { slidesPerView: 1.5, navigation: false },
+    768: { slidesPerView: 2, navigation: false },
+    1024: { slidesPerView: 3, navigation: { enabled: true } },
+  });
   onProgress(event: CustomEvent<[Swiper, number]>) {
     const [swiper, progress] = event.detail;
     // console.log(progress);
   }
 
   onSlideChange() {
-    console.log('slide changed');
+    // console.log('slide changed');
   }
 }

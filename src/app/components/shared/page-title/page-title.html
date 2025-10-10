@@ -1,7 +1,38 @@
-<div class="flex flex-col py-16 px-10 bg-[#969FA6] w-screen text-white">
-  <h1 class="text-6xl font-bold capitalize mb-4">{{ title() }}</h1>
-  @if (subtitle()) {
+<div class="py-12 sm:py-16 bg-[#969FA6] w-full text-white">
+  <div class="max-w-6xl mx-auto px-4 sm:px-8">
+    <div class="flex sm:flex-row justify-between items-center gap-6 sm:gap-0">
+      <!-- Titolo e sottotitolo -->
+      <div class="text-center sm:text-left">
+        <h1
+          class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold capitalize mb-3"
+        >
+          {{ title() }}
+        </h1>
 
-  <h3 class="text-3xl font-semibold">{{ subtitle() }}</h3>
-  }
+        @if (subtitle()) {
+        <h3 class="text-lg sm:text-2xl md:text-3xl font-semibold opacity-90">
+          {{ subtitle() }}
+        </h3>
+        }
+      </div>
+
+      <!-- Pulsante "indietro" -->
+      <div
+        class="cursor-pointer hover:scale-110 transition-transform duration-300"
+        [routerLink]="'..'"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="40"
+          height="40"
+          viewBox="0 0 20 20"
+        >
+          <path
+            fill="#ffffff"
+            d="M19 7v6c0 1.103-.896 2-2 2H3v-3h13V8H5v2L1 6.5L5 3v2h12a2 2 0 0 1 2 2z"
+          />
+        </svg>
+      </div>
+    </div>
+  </div>
 </div>

@@ -4,7 +4,11 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import {
+  provideRouter,
+  withInMemoryScrolling,
+  withViewTransitions,
+} from '@angular/router';
 
 import { routes } from './app.routes';
 import {
@@ -18,7 +22,15 @@ export const appConfig: ApplicationConfig = {
     provideBrowserGlobalErrorListeners(),
     provideZonelessChangeDetection(),
     provideHttpClient(),
-    provideRouter(routes),
+    provideRouter(
+      routes,
+      withViewTransitions(),
+      withInMemoryScrolling({
+        scrollPositionRestoration: 'top',
+        anchorScrolling: 'enabled',
+      })
+    ),
+
     provideClientHydration(),
     { provide: LOCALE_ID, useValue: 'it' },
   ],

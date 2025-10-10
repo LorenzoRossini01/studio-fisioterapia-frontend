@@ -1,24 +1,31 @@
-<div class="wrapper bg-orange-100">
-  <div class="container py-8 mx-auto">
-    <h3 class="text-4xl font-bold capitalize">Titolo</h3>
-    <p class="font-semibold text-3xl">Sottotitolo</p>
+<div class="wrapper py-10 bg-orange-100">
+  <div class="max-w-6xl mx-auto px-4">
+    <h3 class="text-3xl sm:text-4xl font-bold capitalize">
+      {{ featuredServicesData().title }}
+    </h3>
+    <p class="font-semibold text-2xl sm:text-3xl mt-2">
+      {{ featuredServicesData().subtitle }}
+    </p>
 
-    <div class="grid grid-cols-3 gap-30 mt-6">
-      <div class="col flex flex-col gap-2">
-        <p class="mb-4 text-2xl">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quaerat sint
-          nobis vero repellat tempore at! Lorem, ipsum dolor sit amet
-          consectetur adipisicing elit. Quaerat sint nobis vero repellat tempore
-          at!
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mt-10">
+      <!-- Colonna testo -->
+      <div class="flex flex-col justify-between gap-6">
+        <p class="text-lg sm:text-xl leading-relaxed">
+          {{ featuredServicesData().description }}
         </p>
-        <app-button label="Vedi tutti i servizi"></app-button>
+
+        <app-button
+          [label]="featuredServicesData().cta?.label"
+          (onClick)="handleClick()"
+        ></app-button>
       </div>
+
+      <!-- Colonne servizi -->
+      @for (service of featuredServicesData().featured_services; track $index) {
       <div class="col">
-        <app-service-card></app-service-card>
+        <app-service-card [service]="service"></app-service-card>
       </div>
-      <div class="col">
-        <app-service-card></app-service-card>
-      </div>
+      }
     </div>
   </div>
 </div>

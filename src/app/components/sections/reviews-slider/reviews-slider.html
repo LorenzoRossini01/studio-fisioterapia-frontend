@@ -1,21 +1,26 @@
-<div class="wrapper py-8 mx-auto">
-  <h3 class="text-4xl font-bold capitalize text-center">Titolo</h3>
+<div class="wrapper py-10 mx-auto px-4 sm:px-6 lg:px-10 max-w-7xl">
+  <h3 class="text-3xl sm:text-4xl font-bold capitalize text-center mb-8">
+    Cosa dicono i miei pazienti
+  </h3>
 
   <swiper-container
     init="true"
-    slides-per-view="3"
-    space-between="20"
     loop="true"
-    autoplay-delay="4000"
+    space-between="20"
+    autoplay-delay="20000"
+    autoplay-disable-on-interaction="false"
     navigation="true"
     class="mySwiper"
     (swiperprogress)="onProgress($any($event))"
     (swiperslidechange)="onSlideChange()"
+    [attr.breakpoints]="brakepoints"
   >
     @for (review of reviews(); track $index) {
-
-    <swiper-slide>
-      <app-customer-review [review]="review"></app-customer-review>
+    <swiper-slide class="!h-auto py-10">
+      <app-customer-review
+        [review]="review"
+        class="h-full"
+      ></app-customer-review>
     </swiper-slide>
     }
   </swiper-container>

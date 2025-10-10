@@ -1,17 +1,22 @@
 <div class="card text-[#545454]" [class.shadow-lg]="hasShadow()">
-  <div class="image-container w-full mb-4">
-    <img [src]="card().imageUrl" [alt]="card().title" class="w-full h-50" />
+  <div class="image-container w-full h-50 mb-4 object-fit-cover">
+    <img
+      [src]="`http://localhost:1337${service().cover_image?.url}`"
+      [alt]="service().title"
+      class="w-full h-full"
+    />
   </div>
   <div class="px-4 pb-4">
-    <p class="font-extrabold uppercase">{{ card().title }}</p>
-    @if (card().subtitle) {
-    <p class="font-semibold capitalize">{{ card().subtitle }}</p>
-    } @if (card().description) {
-    <p class="mb-4">{{ card().description }}</p>
-    } @if (card().link) {
+    <p class="font-extrabold uppercase">{{ service().title }}</p>
+
+    @if (service().short_description) {
+    <p class="mb-4">{{ service().short_description }}</p>
+    } @if (service().slug) {
     <p>
-      <a [routerLink]="card().link.link" class="font-bold capitalize"
-        >{{ card().link.label }} ></a
+      <a
+        [routerLink]="`/servizi-offerti/fisioterapia/${service().slug}`"
+        class="font-bold capitalize"
+        >Scopri di più -></a
       >
     </p>
     }
