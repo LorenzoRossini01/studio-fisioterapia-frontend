@@ -1,6 +1,18 @@
 <app-page-title title="Chi sono"></app-page-title>
-<app-presentazione-about></app-presentazione-about>
+@if (aboutData().bio_text_image && aboutData().curriculum &&
+aboutData().specializations) {
+
+<app-presentazione-about
+  [bioText]="aboutData().bio_text_image!"
+  [curriculumCertificazioniRichText]="aboutData().curriculum || []"
+  [specializzazioni]="aboutData().specializations"
+  [valori]="aboutData().values"
+></app-presentazione-about>
+}
 <app-page-title title="Lo studio"></app-page-title>
+@if (aboutData().gallery) {
+
 <div class="bg-blue-200 py-8">
-  <app-image-gallery></app-image-gallery>
+  <app-image-gallery [allImages]="aboutData().gallery!"></app-image-gallery>
 </div>
+}

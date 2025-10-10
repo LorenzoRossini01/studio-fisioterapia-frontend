@@ -7,12 +7,12 @@
     <div
       class="break-inside-avoid"
       [ngClass]="
-        image.span === 2 ? 'sm:col-span-2 lg:col-span-2' : 'col-span-1'
+        image.span === 'two' ? 'sm:col-span-2 lg:col-span-2' : 'col-span-1'
       "
       (click)="openImage(i)"
     >
       <img
-        [src]="image.src"
+        [src]="`http://localhost:1337${image.image.url}`"
         alt="Studio"
         class="cursor-pointer w-full h-full object-cover rounded-lg shadow-md hover:scale-[1.02] transition-transform duration-300"
         loading="lazy"
@@ -43,8 +43,8 @@
       (click)="$event.stopPropagation()"
     >
       <img
-        [src]="selectedImage!.src"
-        [alt]="`Foto studio ${selectedImage.src}`"
+        [src]="`http://localhost:1337${selectedImage.image.url}`"
+        [alt]="`Foto studio ${selectedImage.image.url}`"
         class="w-full h-auto rounded-xl shadow-2xl object-contain"
       />
 

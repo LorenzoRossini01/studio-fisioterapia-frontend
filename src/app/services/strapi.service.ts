@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HomeInterface } from '../pages/homepage/home.interface';
+import { AboutInterface } from '../pages/about-me/about-me.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -25,6 +26,19 @@ export class StrapiService {
 
     return this.http.get<{ data: HomeInterface }>(
       `${this.baseUrl}/home?${populateQuery}`
+    );
+  }
+
+  getAbout(): Observable<{ data: AboutInterface }> {
+    const populateQuery = [
+      'populate[bio_text_image][populate][image]=true',
+      'populate[specializations][populate][icon]=true',
+      'populate[values][populate][icon]=true',
+      'populate[gallery][populate][image]=true',
+      'populate[seo][populate][ogImage]=true',
+    ].join('&');
+    return this.http.get<{ data: AboutInterface }>(
+      `${this.baseUrl}/about?${populateQuery}`
     );
   }
 }

@@ -1,4 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, input, signal } from '@angular/core';
+import {
+  BioTextImageInterface,
+  RichTextBlockInterface,
+  SpecializationInterface,
+  ValueItemInterface,
+} from '../../../pages/about-me/about-me.interface';
+import { parseRichText } from '../../../utility/parseRichText';
 
 @Component({
   selector: 'app-presentazione-about',
@@ -7,46 +14,17 @@ import { Component, signal } from '@angular/core';
   styleUrl: './presentazione-about.css',
 })
 export class PresentazioneAbout {
-  curriculumCertificazioni = signal<string>(`    <p class="text-xl">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore animi ex
-      nam architecto ipsam quis quas officia eos ea molestiae optio esse,
-      officiis magni harum ab voluptatem voluptas earum! Fuga? Odit cupiditate,
-      numquam expedita ipsum deserunt in possimus vero maiores maxime autem nisi
-      praesentium, corporis eos cum architecto beatae tempore laborum dolores
-      accusantium aliquid necessitatibus est delectus doloremque unde. Velit?
-    </p>
-        <p class="text-xl">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore animi ex
-      nam architecto ipsam quis quas officia eos ea molestiae optio esse,
-      officiis magni harum ab voluptatem voluptas earum! Fuga? Odit cupiditate,
-      numquam expedita ipsum deserunt in possimus vero maiores maxime autem nisi
-      praesentium, corporis eos cum architecto beatae tempore laborum dolores
-      accusantium aliquid necessitatibus est delectus doloremque unde. Velit?
-    </p>
-    
-    <p class="text-xl">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore animi ex
-      nam architecto ipsam quis quas officia eos ea molestiae optio esse,
-      officiis magni harum ab voluptatem voluptas earum! Fuga? Odit cupiditate,
-      numquam expedita ipsum deserunt in possimus vero maiores maxime autem nisi
-      praesentium, corporis eos cum architecto beatae tempore laborum dolores
-      accusantium aliquid necessitatibus est delectus doloremque unde. Velit?
-    </p>`);
-  specializzazioni = signal<string>(`    <p class="text-xl">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore animi ex
-      nam architecto ipsam quis quas officia eos ea molestiae optio esse,
-      officiis magni harum ab voluptatem voluptas earum! Fuga? Odit cupiditate,
-      numquam expedita ipsum deserunt in possimus vero maiores maxime autem nisi
-      praesentium, corporis eos cum architecto beatae tempore laborum dolores
-      accusantium aliquid necessitatibus est delectus doloremque unde. Velit?
-    </p>
-    
-    <p class="text-xl">
-      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Labore animi ex
-      nam architecto ipsam quis quas officia eos ea molestiae optio esse,
-      officiis magni harum ab voluptatem voluptas earum! Fuga? Odit cupiditate,
-      numquam expedita ipsum deserunt in possimus vero maiores maxime autem nisi
-      praesentium, corporis eos cum architecto beatae tempore laborum dolores
-      accusantium aliquid necessitatibus est delectus doloremque unde. Velit?
-    </p>`);
+  curriculumCertificazioniRichText = input.required<RichTextBlockInterface[]>();
+  bioText = input.required<BioTextImageInterface>();
+
+  specializzazioni = input<SpecializationInterface[]>();
+
+  valori = input<ValueItemInterface[]>();
+
+  bioTextRichText = computed(() => {
+    return parseRichText(this.bioText().text);
+  });
+  curriculumCertificazioni = computed(() => {
+    return parseRichText(this.curriculumCertificazioniRichText());
+  });
 }

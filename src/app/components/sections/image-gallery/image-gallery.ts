@@ -1,6 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { Button } from '../../shared/button/button';
 import { CommonModule } from '@angular/common';
+import {
+  MediaInterface,
+  StudioImageInterface,
+} from '../../../pages/about-me/about-me.interface';
 
 interface Image {
   src: string;
@@ -14,22 +18,11 @@ interface Image {
   styleUrl: './image-gallery.css',
 })
 export class ImageGallery {
-  allImages: Image[] = [
-    { src: 'https://picsum.photos/1920/1080', span: 2 },
-    { src: 'https://picsum.photos/920/1080', span: 1 },
-    { src: 'https://picsum.photos/1200/1080', span: 1 },
-    { src: 'https://picsum.photos/2920/1080', span: 2 },
-    { src: 'https://picsum.photos/1520/1080', span: 2 },
-    { src: 'https://picsum.photos/1320/1080', span: 1 },
-    { src: 'https://picsum.photos/1620/1080', span: 1 },
-    { src: 'https://picsum.photos/1720/1080', span: 1 },
-    { src: 'https://picsum.photos/1550/1080', span: 1 },
-    // aggiungi tutte le tue immagini qui
-  ];
+  allImages = input.required<StudioImageInterface[]>();
 
-  visibleCount = signal(4); // quante foto mostrare inizialmente
+  visibleCount = signal(2); // quante foto mostrare inizialmente
   get visibleImages() {
-    return this.allImages.slice(0, this.visibleCount());
+    return this.allImages().slice(0, this.visibleCount());
   }
 
   showMore() {
@@ -37,7 +30,7 @@ export class ImageGallery {
   }
 
   hasMore() {
-    return this.visibleCount() < this.allImages.length;
+    return this.visibleCount() < this.allImages().length;
   }
 
   selectedIndex = signal<number | null>(null);
@@ -54,19 +47,20 @@ export class ImageGallery {
   nextImage() {
     const current = this.selectedIndex();
     if (current === null) return;
-    const next = (current + 1) % this.allImages.length;
+    const next = (current + 1) % this.allImages().length;
     this.selectedIndex.set(next);
   }
 
   prevImage() {
     const current = this.selectedIndex();
     if (current === null) return;
-    const prev = (current - 1 + this.allImages.length) % this.allImages.length;
+    const prev =
+      (current - 1 + this.allImages().length) % this.allImages().length;
     this.selectedIndex.set(prev);
   }
 
   get selectedImage() {
     const index = this.selectedIndex();
-    return index !== null ? this.allImages[index] : null;
+    return index !== null ? this.allImages()[index] : null;
   }
 }

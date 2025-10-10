@@ -45,7 +45,7 @@ export class Homepage implements OnInit {
       next: (value) => {
         this.homeData.set(value.data);
 
-        console.log(this.homeData());
+        // console.log(this.homeData());
       },
       error: (err) => {
         console.error(err);
