@@ -14,7 +14,7 @@ import { BlogArticlePreview } from '../../components/shared/blog-article-preview
     Button,
     MyServices,
     OpeningTimes,
-    CustomerReview,
+    // CustomerReview,
     PageTitle,
     MoreInfo,
     BlogArticlePreview,

@@ -1,15 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { PageTitle } from '../../components/shared/page-title/page-title';
 import { ServiceCard } from '../../components/shared/service-card/service-card';
-
-export interface ServiceInterface {
-  imageUrl: string;
-  title: string;
-  slug: string;
-  link: string;
-  subtitle?: string;
-  description?: string;
-}
+import { MediaInterface } from '../homepage/home.interface';
+import { StrapiService } from '../../services/strapi.service';
+import { ServiceCategoryInterface } from './services.interface';
 
 @Component({
   selector: 'app-services',
@@ -17,25 +11,25 @@ export interface ServiceInterface {
   templateUrl: './services.html',
   styleUrl: './services.css',
 })
-export class Services {
-  services = signal<ServiceInterface[]>([
-    {
-      imageUrl: 'https://picsum.photos/920/1080',
-      title: 'Fisioterapia',
-      slug: 'fisioterapia',
-      link: 'fisioterapia',
-    },
-    {
-      imageUrl: 'https://picsum.photos/920/1080',
-      title: 'Osteopatia',
-      slug: 'osteopatia',
-      link: 'osteopatia',
-    },
-    {
-      imageUrl: 'https://picsum.photos/920/1080',
-      title: 'Altri servizi',
-      slug: 'altri-servizi',
-      link: 'altri-servizi',
-    },
-  ]);
+export class Services implements OnInit {
+  services = signal<ServiceCategoryInterface[] | []>([]);
+
+  private strapiService = inject(StrapiService);
+
+  ngOnInit(): void {
+    this.fetchServiceCategories();
+  }
+
+  fetchServiceCategories() {
+    this.strapiService.getServicesCategory().subscribe({
+      next: (value) => {
+        console.log(value.data);
+        this.services.set(value.data);
+      },
+
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 }

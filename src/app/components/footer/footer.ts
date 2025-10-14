@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, input, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuickContacts } from '../shared/quick-contacts/quick-contacts';
 import { RouterLink } from '@angular/router';

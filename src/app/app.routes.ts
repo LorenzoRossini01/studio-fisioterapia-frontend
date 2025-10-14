@@ -22,11 +22,11 @@ export const routes: Routes = [
   },
 
   {
-    path: 'servizi-offerti/:serviceSlug',
+    path: 'servizi-offerti/:categorySlug',
     component: ServicesDetail,
   },
   {
-    path: 'servizi-offerti/:serviceSlug/:infoServiceSlug',
+    path: 'servizi-offerti/:categorySlug/:serviceSlug',
     component: ServiceInfos,
   },
   {

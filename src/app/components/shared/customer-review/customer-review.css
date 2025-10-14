@@ -1,0 +1,6 @@
+.review svg {
+  transition: transform 0.2s ease;
+}
+.review svg:hover {
+  transform: scale(1.1);
+}

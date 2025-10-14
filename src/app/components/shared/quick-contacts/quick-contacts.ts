@@ -1,4 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { GeneralInfoService } from '../../../services/general-info.service';
 
 export type ContactsType = {
   icon: string;
@@ -13,21 +14,23 @@ export type ContactsType = {
   styleUrl: './quick-contacts.css',
 })
 export class QuickContacts {
-  quickContacts = signal<ContactsType[]>([
+  generalInfoService = inject(GeneralInfoService);
+
+  quickContacts = computed<ContactsType[]>(() => [
     {
       icon: 'home.png',
       title: 'Dove sono',
-      description: 'via XXXXXX,</br> Legnano (MI)',
+      description: this.generalInfoService.generalInfo()?.address || '',
     },
     {
       icon: 'telephone-handle-silhouette.png',
       title: 'Chiamami',
-      description: '+39 333 123 123 1234',
+      description: this.generalInfoService.generalInfo()?.phone_number || '',
     },
     {
       icon: 'email.png',
       title: 'Scrivimi',
-      description: 'email@email.com',
+      description: this.generalInfoService.generalInfo()?.email || '',
     },
     {
       icon: 'time.png',

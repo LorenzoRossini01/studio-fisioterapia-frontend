@@ -5,15 +5,14 @@
 
   <swiper-container
     init="true"
-    loop="true"
+    [loop]="reviews().length > 3"
+    [autoplay]="autoplay()"
     space-between="20"
-    autoplay-delay="20000"
-    autoplay-disable-on-interaction="false"
-    navigation="true"
+    [navigation]="reviews().length > 3"
     class="mySwiper"
     (swiperprogress)="onProgress($any($event))"
     (swiperslidechange)="onSlideChange()"
-    [attr.breakpoints]="brakepoints"
+    [breakpoints]="breakpoints"
   >
     @for (review of reviews(); track $index) {
     <swiper-slide class="!h-auto py-10">

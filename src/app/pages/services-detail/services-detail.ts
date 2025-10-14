@@ -1,7 +1,9 @@
-import { Component, signal } from '@angular/core';
-import { ServiceInterface } from '../services/services';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { PageTitle } from '../../components/shared/page-title/page-title';
 import { ServiceCard } from '../../components/shared/service-card/service-card';
+import { StrapiService } from '../../services/strapi.service';
+import { ServiceInterface } from '../services/services.interface';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-services-detail',
@@ -9,37 +11,29 @@ import { ServiceCard } from '../../components/shared/service-card/service-card';
   templateUrl: './services-detail.html',
   styleUrl: './services-detail.css',
 })
-export class ServicesDetail {
-  services = signal<ServiceInterface[]>([
-    {
-      imageUrl: 'https://picsum.photos/920/1080',
-      title: 'Fisioterapia 1',
-      slug: 'fisioterapia-1',
-      link: 'fisioterapia-1',
-    },
-    {
-      imageUrl: 'https://picsum.photos/920/1080',
-      title: 'Fisioterapia 2',
-      slug: 'fisioterapia-2',
-      link: 'fisioterapia-2',
-    },
-    {
-      imageUrl: 'https://picsum.photos/920/1080',
-      title: 'Fisioterapia 3',
-      slug: 'fisioterapia-3',
-      link: 'fisioterapia-3',
-    },
-    {
-      imageUrl: 'https://picsum.photos/920/1080',
-      title: 'Fisioterapia 4',
-      slug: 'fisioterapia-4',
-      link: 'fisioterapia-4',
-    },
-    {
-      imageUrl: 'https://picsum.photos/920/1080',
-      title: 'Fisioterapia 5',
-      slug: 'fisioterapia-5',
-      link: 'fisioterapia-5',
-    },
-  ]);
+export class ServicesDetail implements OnInit {
+  services = signal<ServiceInterface[]>([]);
+  categorySlug = signal<string>('');
+
+  private strapiService = inject(StrapiService);
+  private router = inject(ActivatedRoute);
+
+  ngOnInit(): void {
+    this.router.paramMap.subscribe((params) => {
+      this.categorySlug.set(params.get('categorySlug')!);
+    });
+    this.fetchServicesByCategory(this.categorySlug());
+  }
+
+  fetchServicesByCategory(slug: string) {
+    this.strapiService.getCategoryBySlug(slug).subscribe({
+      next: (value) => {
+        this.services.set(value.data[0].services);
+        // console.log(this.services());
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 }

@@ -1,4 +1,5 @@
 import { ButtonType } from '../../components/shared/button/button';
+import { ServiceInterface } from '../services/services.interface';
 
 export interface HomeInterface {
   id: number;
@@ -53,16 +54,6 @@ export interface FeatureServiceSectionInterface {
   description?: string | null;
   cta?: CtaInterface | null;
   featured_services: ServiceInterface[];
-}
-
-export interface ServiceInterface {
-  id: number;
-  title: string;
-  slug: string;
-  short_description?: string;
-  cover_image?: MediaInterface | null;
-  icon?: MediaInterface | null;
-  order?: number;
 }
 
 export interface ReviewInterface {

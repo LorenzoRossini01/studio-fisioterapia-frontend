@@ -1,8 +1,10 @@
-import { Component, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { PageTitle } from '../../components/shared/page-title/page-title';
 import { MyServices } from '../../components/shared/my-services/my-services';
 import { OpeningTimes } from '../../components/shared/opening-times/opening-times';
 import { ContactsForm } from '../../components/sections/contacts-form/contacts-form';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { GeneralInfoService } from '../../services/general-info.service';
 
 @Component({
   selector: 'app-contacts',
@@ -11,18 +13,27 @@ import { ContactsForm } from '../../components/sections/contacts-form/contacts-f
   styleUrl: './contacts.css',
 })
 export class Contacts {
-  contactsInfo = signal([
+  contactsInfo = computed(() => [
     {
       title: 'Studio fisioterapia/osteopatia',
-      text: 'via XXXXXX, Legnano (MI)',
+      text: this.generalInfoService.generalInfo()?.address,
     },
     {
       title: 'telefono',
-      text: '+39 333 123 123 1234',
+      text: this.generalInfoService.generalInfo()?.phone_number,
     },
     {
       title: 'email',
-      text: 'email@email.com',
+      text: this.generalInfoService.generalInfo()?.email,
     },
   ]);
+
+  generalInfoService = inject(GeneralInfoService);
+
+  private sanitizer = inject(DomSanitizer);
+
+  mapEmbed = computed<SafeHtml | null>(() => {
+    const embed = this.generalInfoService.generalInfo()?.google_maps_embed;
+    return embed ? this.sanitizer.bypassSecurityTrustHtml(embed) : null;
+  });
 }

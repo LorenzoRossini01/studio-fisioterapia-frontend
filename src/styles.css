@@ -1,2 +1,160 @@
 @import "tailwindcss";
 @import "swiper/swiper-bundle.css";
+
+.richtext {
+  max-width: none;
+  color: #545454;
+  font-size: 1.125rem; /* ~18px */
+  line-height: 1.75;
+  word-break: break-word;
+
+  /* Paragrafi */
+  p {
+    margin-bottom: 1.25rem;
+  }
+
+  /* Titoli */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 700;
+    color: #333;
+    line-height: 1.2;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-size: 2.25rem;
+  } /* 36px */
+  h2 {
+    font-size: 1.875rem;
+  } /* 30px */
+  h3 {
+    font-size: 1.5rem;
+  } /* 24px */
+  h4 {
+    font-size: 1.25rem;
+  } /* 20px */
+  h5 {
+    font-size: 1.125rem;
+  } /* 18px */
+  h6 {
+    font-size: 1rem;
+  } /* 16px */
+
+  /* Liste */
+  ul,
+  ol {
+    margin: 1.25rem 0 1.25rem 2rem;
+    padding: 0;
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Immagini */
+  img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    margin-block: 2rem;
+  }
+
+  /* Link */
+  a {
+    color: #64a69d;
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  a:hover {
+    color: #477771;
+  }
+
+  /* Citazioni */
+  blockquote {
+    border-left: 4px solid #64a69d;
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: #333;
+    background-color: #f8f8f8;
+    border-radius: 0.25rem;
+  }
+
+  /* Code */
+  pre,
+  code {
+    font-family: "Fira Code", monospace;
+    background: #f3f3f3;
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.25rem;
+    font-size: 0.95rem;
+  }
+
+  pre {
+    display: block;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  /* Tabelle */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+  }
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 0.75rem 1rem;
+  }
+
+  th {
+    background-color: #f0f0f0;
+    font-weight: 600;
+  }
+
+  /* Figure e didascalie */
+  figure {
+    margin: 2rem 0;
+    text-align: center;
+  }
+
+  figcaption {
+    font-size: 0.875rem;
+    color: #777;
+    margin-top: 0.5rem;
+  }
+
+  /* Responsive spacing */
+  @media (max-width: 768px) {
+    font-size: 1rem;
+
+    h1 {
+      font-size: 1.875rem;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    h3 {
+      font-size: 1.25rem;
+    }
+  }
+}

@@ -8,6 +8,7 @@
       <label class="block font-medium mb-1">Nome</label>
       <input
         formControlName="firstName"
+        placeholder="Nome"
         type="text"
         class="w-full p-2 border rounded"
       />
@@ -20,6 +21,7 @@
       <label class="block font-medium mb-1">Cognome</label>
       <input
         formControlName="lastName"
+        placeholder="Cognome"
         type="text"
         class="w-full p-2 border rounded"
       />
@@ -33,6 +35,7 @@
     <label class="block font-medium mb-1">Email</label>
     <input
       formControlName="email"
+      placeholder="Email"
       type="email"
       class="w-full p-2 border rounded"
     />
@@ -46,6 +49,7 @@
     <input
       formControlName="phone"
       type="tel"
+      placeholder="Telefono"
       class="w-full p-2 border rounded"
     />
     @if (form.get('phone')?.touched && form.get('phone')?.invalid) {
@@ -57,6 +61,7 @@
     <label class="block font-medium mb-1">Messaggio</label>
     <textarea
       formControlName="message"
+      placeholder="Inserisci il tuo messaggio"
       rows="4"
       class="w-full p-2 border rounded"
     ></textarea>
@@ -64,6 +69,22 @@
     <p class="text-sm text-red-500">Il messaggio è obbligatorio</p>
     }
   </div>
+  <div class="flex gap-6">
+    <app-button label="Invia"></app-button>
 
-  <app-button label="Invia"></app-button>
+    @if (success()) {
+
+    <p class="text-green-500 font-medium mt-2">
+      Messaggio inviato con successo!
+    </p>
+    }
+
+    <!-- Messaggio di errore -->
+    @if (errorMessage()) {
+
+    <p class="text-red-500 font-medium mt-2">
+      {{ errorMessage() }}
+    </p>
+    }
+  </div>
 </form>

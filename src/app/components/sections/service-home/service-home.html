@@ -23,7 +23,10 @@
       <!-- Colonne servizi -->
       @for (service of featuredServicesData().featured_services; track $index) {
       <div class="col">
-        <app-service-card [service]="service"></app-service-card>
+        <app-service-card
+          [service]="service"
+          [context]="'home'"
+        ></app-service-card>
       </div>
       }
     </div>

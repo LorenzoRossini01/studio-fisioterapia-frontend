@@ -2,10 +2,7 @@ import { Component, inject, input, output, signal } from '@angular/core';
 import { Button } from '../../shared/button/button';
 import { ServiceCard } from '../../shared/service-card/service-card';
 import { Router } from '@angular/router';
-import {
-  FeatureServiceSectionInterface,
-  ServiceInterface,
-} from '../../../pages/homepage/home.interface';
+import { FeatureServiceSectionInterface } from '../../../pages/homepage/home.interface';
 
 @Component({
   selector: 'app-service-home',

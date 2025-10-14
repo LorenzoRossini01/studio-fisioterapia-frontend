@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { Hero } from '../../components/sections/hero/hero';
 import { ServiceHome } from '../../components/sections/service-home/service-home';
 import { ChiSonoHome } from '../../components/sections/chi-sono-home/chi-sono-home';
@@ -7,6 +7,8 @@ import { ReviewsSlider } from '../../components/sections/reviews-slider/reviews-
 import { Router } from '@angular/router';
 import { StrapiService } from '../../services/strapi.service';
 import { HomeInterface } from './home.interface';
+import { GeneralInfoService } from '../../services/general-info.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-homepage',
@@ -16,6 +18,8 @@ import { HomeInterface } from './home.interface';
 })
 export class Homepage implements OnInit {
   private router = inject(Router);
+  generalInfoService = inject(GeneralInfoService);
+
   handleClick(path: string) {
     this.router.navigate([path]);
   }
@@ -52,4 +56,11 @@ export class Homepage implements OnInit {
       },
     });
   }
+
+  private sanitizer = inject(DomSanitizer);
+
+  mapEmbed = computed<SafeHtml | null>(() => {
+    const embed = this.generalInfoService.generalInfo()?.google_maps_embed;
+    return embed ? this.sanitizer.bypassSecurityTrustHtml(embed) : null;
+  });
 }

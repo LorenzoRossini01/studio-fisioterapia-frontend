@@ -1,5 +1,6 @@
 import {
   Component,
+  computed,
   CUSTOM_ELEMENTS_SCHEMA,
   ElementRef,
   input,
@@ -25,12 +26,19 @@ export class ReviewsSlider {
   swiperEl = viewChild<ElementRef>('mySwiperEl');
   reviews = input.required<ReviewInterface[]>();
 
-  brakepoints = JSON.stringify({
+  breakpoints = JSON.stringify({
     0: { slidesPerView: 1, navigation: false },
     640: { slidesPerView: 1.5, navigation: false },
     768: { slidesPerView: 2, navigation: false },
     1024: { slidesPerView: 3, navigation: { enabled: true } },
   });
+
+  autoplay = computed(() =>
+    this.reviews().length > 3
+      ? { delay: 4000, disableOnInteraction: false }
+      : false
+  );
+
   onProgress(event: CustomEvent<[Swiper, number]>) {
     const [swiper, progress] = event.detail;
     // console.log(progress);
