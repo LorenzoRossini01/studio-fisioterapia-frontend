@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { switchMap } from 'rxjs';
+import { environment } from '../../environments/environment.develop';
 
 @Injectable({ providedIn: 'root' })
 export class ContactService {
-  private apiUrl = 'http://localhost:1337/api/contact-messages';
-  private emailUrl = 'http://localhost:1337/api/contact-messages/send-email'; // rotta custom
+  private apiUrl = environment.apiUrl + '/contact-messages';
+  private emailUrl = environment.apiUrl + '/contact-messages/send-email'; // rotta custom
 
   constructor(private http: HttpClient) {}
 

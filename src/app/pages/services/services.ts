@@ -23,7 +23,7 @@ export class Services implements OnInit {
   fetchServiceCategories() {
     this.strapiService.getServicesCategory().subscribe({
       next: (value) => {
-        console.log(value.data);
+        // console.log(value.data);
         this.services.set(value.data);
       },
 

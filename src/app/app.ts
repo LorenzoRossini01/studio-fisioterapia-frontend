@@ -17,6 +17,6 @@ export class App implements OnInit {
 
   ngOnInit(): void {
     this.generalInfoService.loadGeneralInfo();
-    console.log(this.generalInfoService.generalInfo());
+    // console.log(this.generalInfoService.generalInfo());
   }
 }

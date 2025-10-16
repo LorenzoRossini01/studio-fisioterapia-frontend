@@ -1,10 +1,6 @@
 <div class="card text-[#545454]" [class.shadow-lg]="hasShadow()">
   <div class="image-container w-full h-50 mb-4 object-fit-cover">
-    <img
-      [src]="`http://localhost:1337${image()?.url}`"
-      [alt]="title()"
-      class="w-full h-full"
-    />
+    <img [src]="`${image()?.url}`" [alt]="title()" class="w-full h-full" />
   </div>
   <div class="px-4 pb-4">
     <p class="font-extrabold uppercase">{{ title() }}</p>

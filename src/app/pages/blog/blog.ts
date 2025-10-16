@@ -24,6 +24,6 @@ import { BlogArticlePreview } from '../../components/shared/blog-article-preview
 })
 export class Blog {
   handleButtonClick() {
-    console.log('clicked');
+    // console.log('clicked');
   }
 }

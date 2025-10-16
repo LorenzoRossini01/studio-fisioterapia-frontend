@@ -12,12 +12,13 @@
       (click)="openImage(i)"
     >
       <img
-        [src]="`http://localhost:1337${image.image.url}`"
+        [src]="`${image.image.url}`"
         alt="Studio"
         class="cursor-pointer w-full h-full object-cover rounded-lg shadow-md hover:scale-[1.02] transition-transform duration-300"
         loading="lazy"
       />
     </div>
+
     }
   </div>
 
@@ -43,7 +44,7 @@
       (click)="$event.stopPropagation()"
     >
       <img
-        [src]="`http://localhost:1337${selectedImage.image.url}`"
+        [src]="`${selectedImage.image.url}`"
         [alt]="`Foto studio ${selectedImage.image.url}`"
         class="w-full h-auto rounded-xl shadow-2xl object-contain"
       />

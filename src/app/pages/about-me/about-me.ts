@@ -37,7 +37,7 @@ export class AboutMe implements OnInit {
     this.strapiService.getAbout().subscribe({
       next: (value) => {
         this.aboutData.set(value.data);
-        console.log(this.aboutData());
+        // console.log(this.aboutData());
       },
       error: (err) => {
         console.error(err);

@@ -7,12 +7,13 @@ import {
   ServiceCategoryInterface,
   ServiceInterface,
 } from '../pages/services/services.interface';
+import { environment } from '../../environments/environment.develop';
 
 @Injectable({
   providedIn: 'root',
 })
 export class StrapiService {
-  private baseUrl = 'http://localhost:1337/api';
+  private baseUrl = environment.apiUrl;
   constructor(private http: HttpClient) {}
 
   getHome(): Observable<{ data: HomeInterface }> {

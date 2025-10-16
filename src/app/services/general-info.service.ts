@@ -2,8 +2,9 @@ import { Injectable, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs';
 import { MediaInterface } from '../pages/homepage/home.interface';
+import { environment } from '../../environments/environment.develop';
 
-const API_URL = 'http://localhost:1337/api';
+const API_URL = environment.apiUrl;
 
 @Injectable({ providedIn: 'root' })
 export class GeneralInfoService {

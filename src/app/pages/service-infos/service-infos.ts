@@ -50,7 +50,7 @@ export class ServiceInfos implements OnInit {
   });
 
   articleContent = computed(() => {
-    console.log(parseRichText(this.serviceData().body!));
+    // console.log(parseRichText(this.serviceData().body!));
     return parseRichText(this.serviceData().body!);
   });
   serviceSlug = signal<string>('');
@@ -69,7 +69,7 @@ export class ServiceInfos implements OnInit {
   fetchServiceBySlug(slug: string) {
     this.strapiService.getServiceBySlug(slug).subscribe({
       next: (value) => {
-        console.log(value.data[0]);
+        // console.log(value.data[0]);
         this.serviceData.set(value.data[0]);
       },
       error: (err) => {

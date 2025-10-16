@@ -50,7 +50,7 @@ export class ContactsForm {
       next: () => {
         this.isSending.set(false);
         this.success.set(true);
-        console.log(payload);
+        // console.log(payload);
       },
       error: (err) => {
         console.error('Errore invio:', err);
