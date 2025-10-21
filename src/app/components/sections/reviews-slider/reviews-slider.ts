@@ -49,6 +49,6 @@ export class ReviewsSlider {
   }
 
   ngOnInit() {
-    console.log(this.reviews());
+    // console.log(this.reviews());
   }
 }

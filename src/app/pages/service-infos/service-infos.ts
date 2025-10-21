@@ -87,7 +87,7 @@ export class ServiceInfos implements OnInit {
     this.strapiService.getCategories().subscribe({
       next: (value) => {
         this.myServices.set(value.data);
-        console.log(this.myServices());
+        // console.log(this.myServices());
       },
       error: (err) => {
         console.error(err);
