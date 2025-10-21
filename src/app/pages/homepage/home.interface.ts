@@ -24,7 +24,7 @@ export interface HeroInterface {
   title: string;
   subtitle: string | null;
   align: 'left' | 'center' | 'right';
-  background?: MediaInterface | null;
+  background?: MediaInterface;
   cta?: CtaInterface | null;
 }
 
@@ -89,5 +89,24 @@ export interface MediaInterface {
   caption?: string | null;
   width?: number;
   height?: number;
-  formats?: Record<string, any>;
+  formats?: MediaFormatsInterface;
+}
+
+export interface MediaFormatsInterface {
+  thumbnail?: MediaFormatInterface;
+  small?: MediaFormatInterface;
+  medium?: MediaFormatInterface;
+  large?: MediaFormatInterface;
+}
+
+export interface MediaFormatInterface {
+  ext: string;
+  url: string;
+  hash: string;
+  mime: string;
+  name: string;
+  path?: string | null;
+  size: number;
+  width: number;
+  height: number;
 }

@@ -1,11 +1,5 @@
 import { Routes } from '@angular/router';
 import { Homepage } from './pages/homepage/homepage';
-import { AboutMe } from './pages/about-me/about-me';
-import { Services } from './pages/services/services';
-import { ServicesDetail } from './pages/services-detail/services-detail';
-import { ServiceInfos } from './pages/service-infos/service-infos';
-import { Contacts } from './pages/contacts/contacts';
-import { Blog } from './pages/blog/blog';
 
 export const routes: Routes = [
   {
@@ -14,27 +8,58 @@ export const routes: Routes = [
   },
   {
     path: 'chi-sono',
-    component: AboutMe,
+    loadComponent() {
+      return import('./pages/about-me/about-me').then((m) => m.AboutMe);
+    },
   },
   {
     path: 'servizi-offerti',
-    component: Services,
+    loadComponent() {
+      return import('./pages/services/services').then((m) => m.Services);
+    },
   },
 
   {
     path: 'servizi-offerti/:categorySlug',
-    component: ServicesDetail,
+    loadComponent() {
+      return import('./pages/services-detail/services-detail').then(
+        (m) => m.ServicesDetail
+      );
+    },
   },
   {
     path: 'servizi-offerti/:categorySlug/:serviceSlug',
-    component: ServiceInfos,
+    loadComponent() {
+      return import('./pages/service-infos/service-infos').then(
+        (m) => m.ServiceInfos
+      );
+    },
   },
   {
     path: 'blog',
-    component: Blog,
+    loadComponent() {
+      return import('./pages/blog/blog').then((m) => m.Blog);
+    },
   },
   {
     path: 'contatti',
-    component: Contacts,
+    loadComponent() {
+      return import('./pages/contacts/contacts').then((m) => m.Contacts);
+    },
+  },
+  {
+    path: 'privacy-policy',
+    loadComponent: () =>
+      import('./pages/privacy-policy/privacy-policy').then(
+        (m) => m.PrivacyPolicy
+      ),
+  },
+  {
+    path: 'cookie-policy',
+    // component: CookiePolicy,
+    loadComponent: () =>
+      import('./pages/cookie-policy-policy/cookie-policy-policy').then(
+        (m) => m.CookiePolicyPolicy
+      ),
   },
 ];

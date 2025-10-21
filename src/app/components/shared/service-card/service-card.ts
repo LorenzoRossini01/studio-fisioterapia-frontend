@@ -33,6 +33,10 @@ export class ServiceCard {
       (this.service() as ServiceCategoryInterface).image ||
       (this.service() as ServiceInterface).cover_image
   );
+
+  cardImage = computed(() => {
+    return this.image()?.formats?.medium?.url || this.image()?.url || '';
+  });
   slug = computed(() => this.service().slug);
   link = computed(() => {
     const slug = this.slug();

@@ -1,7 +1,9 @@
-import { Component, input, signal } from '@angular/core';
+import { Component, inject, input, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuickContacts } from '../shared/quick-contacts/quick-contacts';
 import { RouterLink } from '@angular/router';
+import { StrapiService } from '../../services/strapi.service';
+import { ServiceCategoryInterface } from '../../pages/services/services.interface';
 
 export type OpeningTimeType = {
   day: string;
@@ -19,7 +21,8 @@ export type LinkType = {
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
-export class Footer {
+export class Footer implements OnInit {
+  private strapiService = inject(StrapiService);
   linkUtili = signal<LinkType[]>([
     {
       label: 'chi sono',
@@ -31,11 +34,11 @@ export class Footer {
     },
     {
       label: 'Cookie Policy (UE)',
-      link: '',
+      link: '/cookie-policy',
     },
     {
       label: 'Privacy Policy',
-      link: '',
+      link: '/privacy-policy',
     },
   ]);
   servizi = signal<LinkType[]>([
@@ -56,6 +59,7 @@ export class Footer {
       link: '/servizi-offerti/terapie-fisiche',
     },
   ]);
+  myServices = signal<ServiceCategoryInterface[]>([]);
 
   orariApertura = signal<OpeningTimeType[]>([
     {
@@ -89,4 +93,20 @@ export class Footer {
   ]);
 
   currentDayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
+
+  ngOnInit(): void {
+    this.fetchCategories();
+  }
+
+  fetchCategories() {
+    this.strapiService.getCategories().subscribe({
+      next: (value) => {
+        this.myServices.set(value.data);
+        console.log(this.myServices());
+      },
+      error: (err) => {
+        console.error(err);
+      },
+    });
+  }
 }

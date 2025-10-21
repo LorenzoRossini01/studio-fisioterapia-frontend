@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { Button } from '../../shared/button/button';
 import { Router } from '@angular/router';
 import { HeroInterface } from '../../../pages/homepage/home.interface';
@@ -12,6 +12,18 @@ import { HeroInterface } from '../../../pages/homepage/home.interface';
 export class Hero {
   heroData = input.required<HeroInterface>();
   onClick = output();
+
+  textAlign = computed(() => {
+    return this.heroData().align ?? 'center';
+  });
+
+  heroBackground = computed(() => {
+    return (
+      this.heroData().background?.formats?.large?.url ??
+      this.heroData().background?.url ??
+      ''
+    );
+  });
   handleClick() {
     this.onClick.emit();
   }

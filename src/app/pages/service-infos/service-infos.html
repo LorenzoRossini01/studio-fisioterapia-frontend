@@ -4,9 +4,19 @@
     <!-- Contenuto principale -->
     <div class="lg:col-span-2">
       <div>
-        <h3 class="text-3xl sm:text-4xl font-bold capitalize my-6">
-          {{ serviceData().short_description }}
-        </h3>
+        <div class="flex justify-between items-center">
+          <h3 class="text-3xl sm:text-4xl font-bold capitalize my-6">
+            {{ serviceData().short_description }}
+          </h3>
+          @if (serviceData().icon) {
+
+          <img
+            [src]="serviceData().icon?.formats?.small?.url"
+            [alt]="serviceData().title"
+            class="h-20"
+          />
+          }
+        </div>
         <p class="text-lg sm:text-xl font-semibold capitalize mb-6">
           Lorem ipsum dolor sit amet consectetur adipisicing elit...
         </p>
@@ -25,10 +35,15 @@
       <app-my-services>
         <h4 class="font-extrabold text-2xl mb-4">I miei Servizi</h4>
         <ul class="text-lg sm:text-xl">
-          @for (link of servizi(); track $index) {
           <li class="font-bold capitalize opacity-75 hover:opacity-100 mb-2">
-            <a [routerLink]="link.link" class="flex">
-              <span>- {{ link.label }}</span>
+            <a routerLink="/servizi-offerti" class="flex">
+              <span>- Tutti i servizi</span>
+            </a>
+          </li>
+          @for (link of myServices(); track $index) {
+          <li class="font-bold capitalize opacity-75 hover:opacity-100 mb-2">
+            <a [routerLink]="'/servizi-offerti/' + link.slug" class="flex">
+              <span>- {{ link.name }}</span>
             </a>
           </li>
           }

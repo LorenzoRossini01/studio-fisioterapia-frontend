@@ -4,7 +4,7 @@
   <!-- Background image -->
   <img
     class="absolute inset-0 w-full h-full object-cover"
-    [src]="`${heroData().background?.url}`"
+    [src]="heroBackground()"
     alt="Studio Fisioterapia e Osteopatia"
   />
 
@@ -13,7 +13,13 @@
 
   <!-- Content -->
   <div
-    class="relative z-10 flex flex-col items-center justify-center text-center px-4 sm:px-8 md:px-16 h-full"
+    class="relative z-10 flex flex-col justify-center px-4 sm:px-8 md:px-16 h-full"
+    [class.text-start]="heroData().align === 'left'"
+    [class.items-start]="heroData().align === 'left'"
+    [class.text-center]="heroData().align === 'center'"
+    [class.items-center]="heroData().align === 'center'"
+    [class.text-end]="heroData().align === 'right'"
+    [class.items-end]="heroData().align === 'right'"
   >
     <h1
       class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase text-white max-w-4xl leading-tight"
@@ -21,7 +27,9 @@
       {{ heroData().title }}
     </h1>
     @if (heroData().subtitle) {
-    <p>
+    <p
+      class="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold text-white max-w-4xl leading-tight"
+    >
       {{ heroData().subtitle }}
     </p>
     } @if (heroData().cta) {

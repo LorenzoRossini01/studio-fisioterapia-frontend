@@ -42,15 +42,28 @@
         <!-- Servizi -->
         <h6 class="font-bold capitalize mb-3">Servizi</h6>
         <ul class="space-y-2">
-          @for (link of servizi(); track $index) {
           <li class="capitalize opacity-50 hover:opacity-100">
-            <a [routerLink]="link.link" class="flex items-center gap-2">
+            <a routerLink="/servizi-offerti" class="flex items-center gap-2">
               <img
                 src="right-arrow.svg"
                 alt="right-arrow"
                 class="w-5 h-5 object-contain invert"
               />
-              <span>{{ link.label }}</span>
+              <span>Tutti i servizi</span>
+            </a>
+          </li>
+          @for (link of myServices(); track $index) {
+          <li class="capitalize opacity-50 hover:opacity-100">
+            <a
+              [routerLink]="'/servizi-offerti/' + link.slug"
+              class="flex items-center gap-2"
+            >
+              <img
+                src="right-arrow.svg"
+                alt="right-arrow"
+                class="w-5 h-5 object-contain invert"
+              />
+              <span>{{ link.name }}</span>
             </a>
           </li>
           }

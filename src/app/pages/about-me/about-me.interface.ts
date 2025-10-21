@@ -1,3 +1,8 @@
+import {
+  MediaFormatInterface,
+  MediaFormatsInterface,
+} from '../homepage/home.interface';
+
 export interface AboutInterface {
   id: number;
   documentId: string;
@@ -7,6 +12,7 @@ export interface AboutInterface {
   specializations: SpecializationInterface[];
   values: ValueItemInterface[];
   gallery: StudioImageInterface[];
+  invert_on_mobile: boolean;
   seo?: SeoInterface;
   createdAt: string;
   updatedAt: string;
@@ -86,5 +92,5 @@ export interface MediaInterface {
   caption?: string | null;
   width?: number;
   height?: number;
-  formats?: Record<string, any>;
+  formats?: MediaFormatsInterface;
 }

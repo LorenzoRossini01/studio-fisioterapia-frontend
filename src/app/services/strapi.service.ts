@@ -61,6 +61,12 @@ export class StrapiService {
     );
   }
 
+  getCategories() {
+    return this.http.get<{ data: ServiceCategoryInterface[] }>(
+      `${this.baseUrl}/service-categories?populate=*`
+    );
+  }
+
   getServiceBySlug(slug: string) {
     return this.http.get<{ data: any }>(
       `${this.baseUrl}/services?filters[slug][$eq]=${slug}&populate=*`

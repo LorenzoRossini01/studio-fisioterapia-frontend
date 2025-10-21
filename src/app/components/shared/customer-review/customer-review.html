@@ -1,7 +1,7 @@
-<div class="review flex gap-2 py-6 px-6 shadow-lg">
+<div class="review flex gap-2 py-6 px-6">
   <div class="image-wrapper rounded-circle flex items-center">
     <img
-      [src]="`${review().avatar?.url}`"
+      [src]="`${profilePictureUrl()}`"
       [alt]="review().author_name"
       class="object-fit-cover w-16 h-16 rounded-full m-auto"
     />

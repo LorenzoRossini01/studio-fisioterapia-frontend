@@ -12,12 +12,13 @@ import { register } from 'swiper/element/bundle';
 
 import { CustomerReview } from '../../shared/customer-review/customer-review';
 import { ReviewInterface } from '../../../pages/homepage/home.interface';
+import { CarouselModule } from 'primeng/carousel';
 
 register();
 
 @Component({
   selector: 'app-reviews-slider',
-  imports: [CustomerReview],
+  imports: [CustomerReview, CarouselModule],
   templateUrl: './reviews-slider.html',
   styleUrl: './reviews-slider.css',
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -26,16 +27,15 @@ export class ReviewsSlider {
   swiperEl = viewChild<ElementRef>('mySwiperEl');
   reviews = input.required<ReviewInterface[]>();
 
-  breakpoints = JSON.stringify({
-    0: { slidesPerView: 1, navigation: false },
-    640: { slidesPerView: 1.5, navigation: false },
-    768: { slidesPerView: 2, navigation: false },
-    1024: { slidesPerView: 3, navigation: { enabled: true } },
-  });
+  responsiveOptions = [
+    { breakpoint: '1024px', numVisible: 3, numScroll: 1 },
+    { breakpoint: '768px', numVisible: 2, numScroll: 1 },
+    { breakpoint: '560px', numVisible: 1, numScroll: 1 },
+  ];
 
   autoplay = computed(() =>
     this.reviews().length > 3
-      ? { delay: 4000, disableOnInteraction: false }
+      ? { delay: 1000, disableOnInteraction: false }
       : false
   );
 
@@ -46,5 +46,9 @@ export class ReviewsSlider {
 
   onSlideChange() {
     // console.log('slide changed');
+  }
+
+  ngOnInit() {
+    console.log(this.reviews());
   }
 }

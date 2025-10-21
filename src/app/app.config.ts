@@ -1,12 +1,15 @@
 import {
   ApplicationConfig,
+  importProvidersFrom,
   LOCALE_ID,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
 } from '@angular/core';
 import {
+  PreloadAllModules,
   provideRouter,
   withInMemoryScrolling,
+  withPreloading,
   withViewTransitions,
 } from '@angular/router';
 
@@ -28,7 +31,8 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({
         scrollPositionRestoration: 'top',
         anchorScrolling: 'enabled',
-      })
+      }),
+      withPreloading(PreloadAllModules)
     ),
 
     provideClientHydration(),

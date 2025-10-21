@@ -1,4 +1,7 @@
-import { RichTextBlockInterface } from '../about-me/about-me.interface';
+import {
+  RichTextBlockInterface,
+  SeoInterface,
+} from '../about-me/about-me.interface';
 import { MediaInterface } from '../homepage/home.interface';
 
 export interface ServiceCategoryInterface {
@@ -20,6 +23,7 @@ export interface ServiceInterface {
   cover_image?: MediaInterface | null;
   icon?: MediaInterface | null;
   order?: number;
+  seo?: SeoInterface;
   category?: {
     id: number;
     name: string;

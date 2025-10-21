@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { ReviewInterface } from '../../../pages/homepage/home.interface';
 
 @Component({
@@ -9,6 +9,14 @@ import { ReviewInterface } from '../../../pages/homepage/home.interface';
 })
 export class CustomerReview {
   review = input.required<ReviewInterface>();
+
+  profilePictureUrl = computed(() => {
+    return (
+      this.review().avatar?.formats?.thumbnail?.url ||
+      this.review().avatar?.url ||
+      ''
+    );
+  });
 
   fullStars = () => Array(Math.floor(this.review().rating)).fill(0);
   hasHalfStar = () => this.review().rating % 1 >= 0.5;

@@ -3,24 +3,20 @@
     Cosa dicono i miei pazienti
   </h3>
 
-  <swiper-container
-    init="true"
-    [loop]="reviews().length > 6"
-    [autoplay]="autoplay()"
-    space-between="20"
-    [navigation]="reviews().length > 3"
-    class="mySwiper"
-    (swiperprogress)="onProgress($any($event))"
-    (swiperslidechange)="onSlideChange()"
-    [breakpoints]="breakpoints"
+  <p-carousel
+    [value]="reviews()"
+    [numVisible]="3"
+    [responsiveOptions]="responsiveOptions"
+    [numScroll]="1"
+    [circular]="true"
+    [autoplayInterval]="reviews().length > 3 ? 4000 : 0"
+    [showNavigators]="reviews().length > 3"
   >
-    @for (review of reviews(); track $index) {
-    <swiper-slide class="!h-auto py-10">
+    <ng-template let-review #item>
       <app-customer-review
         [review]="review"
         class="h-full"
       ></app-customer-review>
-    </swiper-slide>
-    }
-  </swiper-container>
+    </ng-template>
+  </p-carousel>
 </div>

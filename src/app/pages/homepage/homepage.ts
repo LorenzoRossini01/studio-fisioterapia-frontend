@@ -9,6 +9,7 @@ import { HomeInterface } from './home.interface';
 import { GeneralInfoService } from '../../services/general-info.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ReviewsSlider } from '../../components/sections/reviews-slider/reviews-slider';
+import { SeoService } from '../../services/seo.service';
 
 @Component({
   selector: 'app-homepage',
@@ -18,6 +19,7 @@ import { ReviewsSlider } from '../../components/sections/reviews-slider/reviews-
 })
 export class Homepage implements OnInit {
   private router = inject(Router);
+  private seoService = inject(SeoService);
   generalInfoService = inject(GeneralInfoService);
 
   handleClick(path: string) {
@@ -40,6 +42,16 @@ export class Homepage implements OnInit {
     publishedAt: '',
   });
 
+  seoData = computed(() => {
+    return {
+      metaTitle: this.homeData()?.seo?.metaTitle + ' - Homepage' || 'Homepage',
+      metaDescription: this.homeData()?.seo?.metaDescription || '',
+      ogImage: this.homeData()?.seo?.ogImage?.url || '',
+      noIndex: this.homeData()?.seo?.noIndex || false,
+      canonicalUrl: this.homeData()?.seo?.canonicaUrl || this.router.url,
+    };
+  });
+
   ngOnInit(): void {
     this.fetchHomeData();
   }
@@ -48,6 +60,7 @@ export class Homepage implements OnInit {
     this.strapiService.getHome().subscribe({
       next: (value) => {
         this.homeData.set(value.data);
+        this.seoService.updateSeo(this.seoData());
 
         // console.log(this.homeData());
       },

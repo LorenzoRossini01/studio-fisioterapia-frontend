@@ -12,8 +12,8 @@
       (click)="openImage(i)"
     >
       <img
-        [src]="`${image.image.url}`"
-        alt="Studio"
+        [src]="image.image.formats?.medium?.url || image.image.url"
+        [alt]="image.alt || `Foto studio ${i + 1}`"
         class="cursor-pointer w-full h-full object-cover rounded-lg shadow-md hover:scale-[1.02] transition-transform duration-300"
         loading="lazy"
       />
@@ -44,15 +44,17 @@
       (click)="$event.stopPropagation()"
     >
       <img
-        [src]="`${selectedImage.image.url}`"
-        [alt]="`Foto studio ${selectedImage.image.url}`"
+        [src]="
+          selectedImage.image.formats?.large?.url || selectedImage.image.url
+        "
+        [alt]="selectedImage.alt || 'Immagine ingrandita'"
         class="w-full h-auto rounded-xl shadow-2xl object-contain"
       />
 
       <!-- Pulsante chiudi -->
       <button
         (click)="closeImage()"
-        class="absolute top-[-2rem] right-[-2rem] text-white text-3xl font-bold hover:scale-110 transition"
+        class="absolute top-[-5rem] right-[-5rem] text-white text-3xl w-25 h-25 bg-[#ff000070] rounded-full font-bold hover:scale-110 transition"
       >
         ×
       </button>
@@ -60,14 +62,14 @@
       <!-- Frecce -->
       <button
         (click)="prevImage()"
-        class="absolute left-2 top-1/2 -translate-y-1/2 text-white text-4xl font-bold hover:scale-125 transition sm:left-[-2rem]"
+        class="absolute left-[-5rem] top-1/2 -translate-y-1/2 text-white text-4xl px-[2rem] py-[1rem] bg-[#00000070] rounded-full font-bold hover:scale-125 transition sm:left-[-2rem]"
       >
         ‹
       </button>
 
       <button
         (click)="nextImage()"
-        class="absolute right-2 top-1/2 -translate-y-1/2 text-white text-4xl font-bold hover:scale-125 transition sm:right-[-2rem]"
+        class="absolute right-[-5rem] top-1/2 -translate-y-1/2 text-white text-4xl p-[2rem] py-[1rem] bg-[#00000070] rounded-full font-bold hover:scale-125 transition sm:right-[-2rem]"
       >
         ›
       </button>

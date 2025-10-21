@@ -6,9 +6,13 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
       <!-- Immagine -->
-      <div class="img-container order-1 md:order-none">
+      <div
+        class="img-container"
+        [ngClass]="imagePosition() ? 'order-last' : 'order-first'"
+        [ngClass]="invertOnMobile() ? 'order-last' : 'order-first'"
+      >
         <img
-          [src]="`${aboutHomeData().image?.url}`"
+          [src]="sectionImage()"
           alt="Foto del fisioterapista"
           class="w-full h-full object-cover rounded-xl shadow-lg aspect-video"
         />

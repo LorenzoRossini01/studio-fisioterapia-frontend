@@ -6,10 +6,11 @@ import {
   ValueItemInterface,
 } from '../../../pages/about-me/about-me.interface';
 import { parseRichText } from '../../../utility/parseRichText';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-presentazione-about',
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './presentazione-about.html',
   styleUrl: './presentazione-about.css',
 })
@@ -20,6 +21,10 @@ export class PresentazioneAbout {
   specializzazioni = input<SpecializationInterface[]>();
 
   valori = input<ValueItemInterface[]>();
+
+  invertOnMobile = computed(() => {
+    return this.bioText().invert_on_mobile;
+  });
 
   bioTextRichText = computed(() => {
     return parseRichText(this.bioText().text);
