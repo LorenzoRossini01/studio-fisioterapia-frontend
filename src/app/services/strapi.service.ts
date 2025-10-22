@@ -72,4 +72,8 @@ export class StrapiService {
       `${this.baseUrl}/services?filters[slug][$eq]=${slug}&populate=*`
     );
   }
+
+  getContactsPageContent() {
+    return this.http.get<{ data: any }>(`${this.baseUrl}/contact?populate=*`);
+  }
 }
