@@ -1,9 +1,17 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import {
+  Component,
+  effect,
+  inject,
+  input,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { QuickContacts } from '../shared/quick-contacts/quick-contacts';
 import { RouterLink } from '@angular/router';
 import { StrapiService } from '../../services/strapi.service';
 import { ServiceCategoryInterface } from '../../pages/services/services.interface';
+import { GeneralInfoService } from '../../services/general-info.service';
 
 export type OpeningTimeType = {
   day: string;
@@ -23,6 +31,8 @@ export type LinkType = {
 })
 export class Footer implements OnInit {
   private strapiService = inject(StrapiService);
+  private generalInfo = inject(GeneralInfoService);
+
   linkUtili = signal<LinkType[]>([
     {
       label: 'chi sono',
@@ -41,58 +51,23 @@ export class Footer implements OnInit {
       link: '/privacy-policy',
     },
   ]);
-  servizi = signal<LinkType[]>([
-    {
-      label: 'tutti i servizi',
-      link: '/servizi-offerti',
-    },
-    {
-      label: 'fisioterapia',
-      link: '/servizi-offerti/fisioterapia',
-    },
-    {
-      label: 'Osteopatia',
-      link: '/servizi-offerti/osteopatia',
-    },
-    {
-      label: 'Terapie fisiche',
-      link: '/servizi-offerti/terapie-fisiche',
-    },
-  ]);
+  servizi = signal<LinkType[]>([]);
   myServices = signal<ServiceCategoryInterface[]>([]);
 
-  orariApertura = signal<OpeningTimeType[]>([
-    {
-      day: 'Lunedì',
-      hours: '8:30 - 13.30 e 14:30 - 18:30',
-    },
-    {
-      day: 'Martedì',
-      hours: '8:30 - 13.30 e 14:30 - 18:30',
-    },
-    {
-      day: 'Mercoledì',
-      hours: '8:30 - 13.30 e 14:30 - 18:30',
-    },
-    {
-      day: 'Giovedì',
-      hours: '8:30 - 13.30 e 14:30 - 18:30',
-    },
-    {
-      day: 'Venerdì',
-      hours: '8:30 - 13.30 e 14:30 - 18:30',
-    },
-    {
-      day: 'Sabato',
-      hours: '8:30 - 13.30 e 14:30 - 18:30',
-    },
-    {
-      day: 'Domenica',
-      hours: '',
-    },
-  ]);
+  orariApertura = signal<OpeningTimeType[]>([]);
 
   currentDayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
+
+  private _updateOrari = effect(() => {
+    const info = this.generalInfo.generalInfo();
+    if (info?.opening_times?.days) {
+      const formatted = info.opening_times.days.map((day) => ({
+        day: day.day_name,
+        hours: day.is_closed ? '' : day.hours,
+      }));
+      this.orariApertura.set(formatted);
+    }
+  });
 
   ngOnInit(): void {
     this.fetchCategories();
@@ -102,7 +77,7 @@ export class Footer implements OnInit {
     this.strapiService.getCategories().subscribe({
       next: (value) => {
         this.myServices.set(value.data);
-        console.log(this.myServices());
+        // console.log(this.myServices());
       },
       error: (err) => {
         console.error(err);

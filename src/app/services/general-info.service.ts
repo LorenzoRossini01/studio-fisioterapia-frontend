@@ -14,7 +14,9 @@ export class GeneralInfoService {
 
   loadGeneralInfo() {
     return this.http
-      .get<{ data: GeneralSiteInfo }>(`${API_URL}/general-site-info?populate=*`)
+      .get<{ data: GeneralSiteInfo }>(
+        `${API_URL}/general-site-info?populate[opening_times][populate]=days&populate[site_logo][populate]=*`
+      )
       .subscribe((info) => this.generalInfo.set(info.data));
   }
 }
@@ -26,6 +28,13 @@ export interface GeneralSiteInfo {
   phone_number?: string;
   address?: string;
   google_maps_embed?: string;
-  opening_hours?: { day: string; hours: string }[];
+  opening_times?: {
+    days: {
+      day_name: string;
+      hours: string;
+      hours_contracted: string;
+      is_closed: boolean;
+    }[];
+  };
   social_links?: { platform: string; url: string; icon?: string }[];
 }

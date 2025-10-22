@@ -75,6 +75,8 @@
     <div class="right w-full">
       <div class="orari w-full">
         <h6 class="font-bold capitalize mb-3">Orari di apertura</h6>
+        @if (orariApertura().length) {
+
         <ul class="w-full space-y-1">
           @for (item of orariApertura(); track $index) {
           <li
@@ -93,6 +95,9 @@
           </li>
           }
         </ul>
+        } @else{
+        <p>Caricamento orari...</p>
+        }
       </div>
     </div>
   </div>
